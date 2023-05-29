@@ -1,0 +1,77 @@
+{% extends 'main/base.html' %}
+
+{% block title %} All Products {% endblock %}
+
+    {% block body %}
+
+
+
+    
+    <div class="products">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="filters">
+              <ul>
+                  <li class="active" data-filter="*">All Products</li>
+
+                  {% for i in prod_category%}
+                  <li data-filter=".{{i.tag}}"> {{ i.name }} </li>
+                  {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="filters-content">
+                <div class="row grid">
+                    
+                    {% for i in prods %}
+                    <div class="col-lg-4 col-md-4 all {{ i.category.tag }}">
+                      <div class="product-item">
+                        <a href="#"><img src="{{ i.img.url }}" alt=""></a>
+                        <div class="down-content">
+                          <a href="#"><h4> {{ i.title }} </h4></a>
+                          <h6> ${{i.price}} </h6>
+                          <p> {{ i.text }} </p>
+                          
+                          <ul class="stars"> 
+                            {% if user in i.reviews.all %}
+                            <form style="border: 1px solid red" method="post">
+                            {% else %}
+                            <form method="post">
+                            {% endif %}
+          
+                              {% csrf_token %}
+          
+                              <li><button style="border:none; background-color: transparent;" class = "star_btn" name = "star_1" value="{{ i.id }}" type="submit"><i class="fa fa-star"></i></button></li>
+                              <li><button style="border:none; background-color: transparent;" class = "star_btn" name = "star_2" value="{{ i.id }}" type="submit"><i class="fa fa-star"></i></button></li>
+                              <li><button style="border:none; background-color: transparent;" class = "star_btn" name = "star_3" value="{{ i.id }}" type="submit"><i class="fa fa-star"></i></button></li>
+                              <li><button style="border:none; background-color: transparent;" class = "star_btn" name = "star_4" value="{{ i.id }}" type="submit"><i class="fa fa-star"></i></button></li>
+                              <li><button style="border:none; background-color: transparent;" class = "star_btn" name = "star_5" value="{{ i.id }}" type="submit"><i class="fa fa-star"></i></button></li>
+                            </form>
+                          </ul>
+                         
+                         <span>Reviews ({{ i.reviews.count }})</span>
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                 
+                  
+                </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <ul class="pages">
+              <li class="active" ><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endblock %}

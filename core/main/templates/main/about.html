@@ -1,0 +1,148 @@
+{% extends 'main/base.html' %} {% block title %} About Page {% endblock %} 
+
+{%block body %}
+<div class="best-features about-features">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-heading">
+          <h2>Our Background</h2>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="right-image">
+          <img src="{{ our_bg.img.url }}" alt="" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="left-content">
+          <h4>{{ our_bg.title }}</h4>
+          <p>
+            {{ our_bg.text_1 }} <br /><br />
+            {{ our_bg.text_2 }}
+          </p>
+          <ul class="social-icons">
+            {% if our_bg.facebook_url %}
+            <li>
+              <a target="_blank" href="{{ our_bg.facebook_url }}"
+                ><i class="fa fa-facebook"></i
+              ></a>
+            </li>
+            {% endif %} {% if our_bg.twitter_url %}
+            <li>
+              <a target="_blank" href="{{ our_bg.twitter_url }}"
+                ><i class="fa fa-twitter"></i
+              ></a>
+            </li>
+            {% endif %} {% if our_bg.linked_in_url%}
+            <li>
+              <a target="_blank" href="{{ our_bg.linked_in_url }}"
+                ><i class="fa fa-linkedin"></i
+              ></a>
+            </li>
+            {% endif%} {% if our_bg.be_url %}
+            <li>
+              <a target="_blank" href="{{ our_bg.be_url }}"
+                ><i class="fa fa-behance"></i
+              ></a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="team-members">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-heading">
+          <h2>Our Team Members</h2>
+        </div>
+      </div>
+
+      {% for i in team_members%}
+      <div class="col-md-4">
+        <div class="team-member">
+          <div class="thumb-container">
+            <img src="{{ i.img.url }}" alt="" />
+            <div class="hover-effect">
+              <div class="hover-content">
+                <ul class="social-icons">
+                  {% if i.fb %}
+                  <li>
+                    <a target="_blank" href="{{ i.fb }}"
+                      ><i class="fa fa-facebook"></i
+                    ></a>
+                  </li>
+                  {% endif %} 
+                  
+                  {% if i.twitter %}
+                  <li>
+                    <a target="_blank" href="{{ i.twitter }}"
+                      ><i class="fa fa-twitter"></i
+                    ></a>
+                  </li>
+                  {% endif %} 
+                  
+                  {% if i.linkedin%}
+                  <li>
+                    <a target="_blank" href="{{ i.linkedin }}"
+                      ><i class="fa fa-linkedin"></i
+                    ></a>
+                  </li>
+                  {% endif%} 
+                  
+                  {% if i.be %}
+                  <li>
+                    <a target="_blank" href="{{ i.be }}"
+                      ><i class="fa fa-behance"></i
+                    ></a>
+                  </li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="down-content">
+            <h4> {{ i.name }} </h4>
+            <span> {{ i.profession}}</span>
+            <p>
+              {{ i.about }}
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="services">
+  <div class="container">
+    <div class="row">
+      
+      {% for i in serices %}
+      <div class="col-md-4">
+        <div class="service-item">
+          <div class="icon">
+            <img style = "max-width: 150px" src="{{ i.img.url }}" alt="">
+          </div>
+          <div class="down-content">
+            <h4>{{ i.title }}</h4>
+            <p>
+              {{ i.description }}
+            </p>
+            <a href="#" class="filled-button">Read More</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

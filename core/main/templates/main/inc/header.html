@@ -1,0 +1,41 @@
+<!-- Header -->
+
+
+<header class="">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}"><h2> {{ sitetitle.pt_1 }} <em> {{ sitetitle.pt_2 }} </em></h2></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item {% if page == 'home' %}active{% endif %}">
+              <a class="nav-link" href="{% url 'index' %}"> Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li> 
+            <li class="nav-item {% if page == 'products' %}active{% endif %}">
+              <a class="nav-link" href="{% url 'products' %}">Our Products</a>
+            </li>
+            <li class="nav-item {% if page == 'about'%}active{% endif %}">
+              <a class="nav-link" href="{% url 'about' %}">About Us</a>
+            </li>
+            <li class="nav-item {% if page == 'contact'%}active{% endif %}">
+              <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+            </li>
+
+            {% if user.is_authenticated %}
+              <li class="nav-item {% if page == 'loginregister'%}active{% endif %}">
+                 <a class="nav-link" href="{% url 'logout' %}"> {{ user.username }} </a> <!-- Ste logout piti lini -->
+              </li>
+            {% else %}
+              <li class="nav-item {% if page == 'loginregister'%}active{% endif %}">
+                <a class="nav-link" href="{% url 'login_register' %}">Login / Register</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+</header>

@@ -1,0 +1,118 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Contact Us {% endblock %}
+    {% block body %}
+    
+
+
+    <div class="find-us">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Our Location on Maps</h2>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div id="map">
+              <iframe src="{{ about_ofice.map_url }}" width="100%" height="330px" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="left-content">
+              <h4>{{ about_ofice.title }} </h4>
+              
+              <p> 
+                {{ about_ofice.text_1 }} 
+                <br><br>
+                {{ about_ofice.text_2 }}
+              </p>
+              
+              <ul class="social-icons">
+                
+                {% if about_ofice.fb %}
+                <li><a target="_blank" href="{{ about_ofice.fb }}"><i class="fa fa-facebook"></i></a></li>
+                {% endif %}
+                
+                {% if about_ofice.twitter_url %}
+                <li><a target="_blank" href="{{ about_ofice.twitter_url }}"><i class="fa fa-twitter"></i></a></li>
+                {% endif %}
+
+                {% if about_ofice.linked_in_url%}
+                <li><a target="_blank" href="{{ about_ofice.linked_in_url }}"><i class="fa fa-linkedin"></i></a></li>
+                {% endif%}
+
+                {% if about_ofice.be_url %}
+                <li><a target="_blank" href="{{ about_ofice.be_url }}"><i class="fa fa-behance"></i></a></li>
+                {% endif  %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+
+    
+    <div class="send-message">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Send us a Message</h2>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="contact-form">
+              <form id="contact" action="" method="post">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <fieldset>
+                      <input name="full_name" type="text" class="form-control" id="name" placeholder="Full Name" required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <fieldset>
+                      <input name="email" type="text" class="form-control" id="email" placeholder="E-Mail Address" required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12">
+                    <fieldset>
+                      <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject" required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your Message" required=""></textarea>
+                    </fieldset>
+                  </div>
+                  <div class="col-lg-12">
+                    <fieldset>
+                      <button type="submit" id="form-submit" class="filled-button">Send Message</button>
+                    </fieldset>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <ul class="accordion">
+
+              {% for i in accordion_list %}
+              <li>
+                  <a> {{ i.title }} </a>
+                  <div class="content">
+                      <p> {{ i.text }} </p>
+                  </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endblock %}
